@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Animal Shelter Management
+{% endblock title %}
+
+{% block body %}
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="container mt-4">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Animal ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Species</th>
+                <th scope="col">Age</th>
+                <th scope="col">Adoption Status</th>
+                <th scope="col">Arrival Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for animal in animals %}
+            <tr>
+                <th scope="row">{{animal.id}}</th>
+                <td>{{animal.name}}</td>
+                <td>{{animal.species}}</td>
+                <td>{{animal.age}}</td>
+                <td>{{animal.adoption_status}}</td>
+                <td>{{animal.arrival_date}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock body %}
